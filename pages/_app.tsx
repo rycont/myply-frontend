@@ -1,4 +1,4 @@
-import { Vexile } from 'components/flexy';
+import { Vexile } from 'components/ezlay';
 import { AppProps } from 'next/app';
 import Image from 'next/image'
 import { globalCss, styled } from 'stitches.config';
@@ -12,8 +12,10 @@ const LogoWapper = styled('div', {
 function MyApp({ Component, pageProps }: AppProps
 ) {
   globalCss({
+    "@import": ["/ongothic/index.css"],
     html: {
-      fontSize: "4px"
+      fontSize: "4px",
+      fontFamily: "KoddiUD OnGothic"
     },
     body: {
       margin: "0px",
