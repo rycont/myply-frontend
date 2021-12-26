@@ -11,7 +11,7 @@ export const PlaylistItem: React.FC<
         <Vexile gap={1.5}>
             <Vexile>
                 <IRegular>{props.title}</IRegular>
-                <Hexile>
+                <Hexile y="center">
                     <LoadSVG height={3} width={2} src="/icons/song.svg" />
                     <IDesc>{props.tracks.length}곡</IDesc>
                 </Hexile>

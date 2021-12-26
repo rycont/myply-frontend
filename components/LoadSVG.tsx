@@ -8,7 +8,7 @@ export const LoadSVG: React.FC<{
     return (
         <div
             style={{
-                position: "absolute",
+                position: "relative",
                 height: props.height + "rem",
                 width: props.width + "rem",
             }}

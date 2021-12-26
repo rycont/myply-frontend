@@ -5,6 +5,7 @@ export let playlistDatabase: Database<Omit<Playlist, "tracks"> & {
     tracks: Relation
 }>;
 
-(async () => {
+export const initDatabase = async () => {
+    if (playlistDatabase) return
     playlistDatabase = await connectDatabase("Playlist")
-})()
+}
