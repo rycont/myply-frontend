@@ -20,10 +20,13 @@ function MyApp({ Component, pageProps }: AppProps) {
             margin: "0px",
             fontSize: "4rem",
         },
+        "#__next": {
+            height: "100vh",
+        },
     })()
 
     return (
-        <Vexile padding={6} gap={6}>
+        <Vexile padding={6} gap={6} filly>
             <LogoWapper>
                 <Image src="/logo.svg" layout="fill" />
             </LogoWapper>

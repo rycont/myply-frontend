@@ -14,3 +14,12 @@ export const Fab = styled(Hexile, {
     gap: "1rem",
     alignItems: "center",
 })
+
+export const Button = styled(Hexile, {
+    background: "$accent",
+    color: "white",
+    padding: "2rem 5rem",
+    borderRadius: "6rem",
+    gap: "1rem",
+    alignItems: "center",
+})
