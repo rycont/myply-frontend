@@ -110,7 +110,7 @@ const extendDocument = <T extends TypeBase, ExtendedType extends Record<string, 
         }
     }
 
-class Database<DocumentType extends TypeBase> {
+export class Database<DocumentType extends TypeBase> {
     id: string
     constructor(id: string) {
         this.id = id

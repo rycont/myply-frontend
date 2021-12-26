@@ -1,13 +1,8 @@
-import { Header, Vexile } from "components"
-import {
-    connectDatabase,
-    fetchDatabases,
-    notion,
-    Relation,
-} from "database/notion"
 import { GetServerSideProps } from "next"
 import { Playlist, Song } from "myply-common"
+import { Header, Vexile } from "components"
 import { PlaylistItem } from "./partial"
+import { playlistDatabase } from "database"
 
 export default function Home(props: { recents: Playlist[] }) {
     return (
@@ -21,27 +16,23 @@ export default function Home(props: { recents: Playlist[] }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const playlistDatabase = await connectDatabase<
-        Omit<Playlist, "tracks"> & {
-            tracks: Relation
-        }
-    >("Playlist")
+    const recents = await playlistDatabase.get<{
+        tracks: Song[]
+    }>(
+        {
+            sorts: [
+                {
+                    timestamp: "created_time",
+                    direction: "ascending",
+                },
+            ],
+        },
+        ["tracks"]
+    )
 
     return {
         props: {
-            recents: await playlistDatabase.get<{
-                tracks: Song[]
-            }>(
-                {
-                    sorts: [
-                        {
-                            timestamp: "created_time",
-                            direction: "ascending",
-                        },
-                    ],
-                },
-                ["tracks"]
-            ),
+            recents,
         },
     }
 }
