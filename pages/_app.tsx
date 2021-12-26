@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps
   globalCss({
     "@import": ["/ongothic/index.css"],
     html: {
-      fontSize: "4px",
+      fontSize: "6px",
       fontFamily: "KoddiUD OnGothic"
     },
     body: {
