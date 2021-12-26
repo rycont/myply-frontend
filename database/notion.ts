@@ -21,6 +21,14 @@ const getPage = async () => {
     return cachedPage
 }
 
+const getPageProperties = async (id: string) => {
+    const res = await notion.pages.retrieve({
+        page_id: id
+    })
+    const props = (res as { properties: CreatePageParameters['properties'] }).properties
+    return property2object(props)
+}
+
 export const fetchDatabases = async () => {
     if (cachedDatabases) return cachedDatabases
     const page = await getPage();
@@ -32,8 +40,8 @@ export const fetchDatabases = async () => {
 }
 
 export interface Relation {
-    scheme: string
-    id: string[]
+    type: "Relation"
+    target: string[]
 }
 
 const adf: CreatePageParameters['properties'] = {
@@ -64,7 +72,7 @@ const object2NotionProperty = (content: TypeBase) => {
         }]
         if (type === 'number') return [key, value]
         if (type === 'object') return [key, {
-            relation: (value as Relation).id.map(id => ({
+            relation: (value as Relation).target.map(id => ({
                 id
             }))
         }]
@@ -82,10 +90,25 @@ const property2object = (content: CreatePageParameters['properties']) => {
     } & Record<string, any>]) => {
         if (value.type === 'rich_text') return [key, value.rich_text.map((t: { plain_text: string }) => t.plain_text).join('')]
         if (value.type === 'title') return [key, value.title.map((t: { plain_text: string }) => t.plain_text).join('')]
-        if (value.type === 'relation') return [key, value.relation.map((e: { id: string }) => e.id)]
+        if (value.type === 'relation') {
+            return [key, {
+                target: value.relation.map((e: { id: string }) => e.id),
+                type: "Relation"
+            } as Relation]
+        }
         return [key, value[value.type]]
     }))
 }
+
+const extendDocument = <T extends TypeBase, ExtendedType extends Record<string, unknown>>(keys: (keyof T)[]) =>
+    async (doc: T): Promise<T & ExtendedType> => {
+        return {
+            ...doc, ...Object.fromEntries(await Promise.all(keys.map(async key => [
+                key,
+                await Promise.all((doc[key] as Relation).target.map(getPageProperties))
+            ])))
+        }
+    }
 
 class Database<DocumentType extends TypeBase> {
     id: string
@@ -93,15 +116,18 @@ class Database<DocumentType extends TypeBase> {
         this.id = id
     }
 
-    async get(query: Omit<QueryDatabaseParameters, "database_id">) {
+    async get<ExtendedType extends Record<string, unknown>>(query: Omit<QueryDatabaseParameters, "database_id">, extend?: (keyof DocumentType)[]) {
         const res = await notion.databases.query({
             ...query,
             database_id: this.id,
         })
-        return res.results.map(e => ({
-            ...property2object((e as { properties: CreatePageParameters['properties'] }).properties),
+        const processed = res.results.map(e => ({
+            ...(property2object((e as { properties: CreatePageParameters['properties'] }).properties) as DocumentType),
             _id: e.id
         }))
+        if (!extend?.length) return processed
+
+        return await Promise.all(processed.map(extendDocument<DocumentType, ExtendedType>(extend)))
     }
 
     async create(content: DocumentType) {
@@ -113,6 +139,10 @@ class Database<DocumentType extends TypeBase> {
             properties: object2NotionProperty(content)
         });
         return res.id
+    }
+
+    findById(id: string) {
+        return getPageProperties(id)
     }
 }
 

@@ -1976,7 +1976,7 @@ ms@^2.1.1:
 
 "myply-common@https://github.com/rycont/myply-common/":
   version "0.0.0"
-  resolved "https://github.com/rycont/myply-common/#3b3f572309b8d0334b0fedd082135349f4e1eb0f"
+  resolved "https://github.com/rycont/myply-common/#5f7d9d8128cdbb1c2ef2801727d943c6d4ffb08d"
 
 nanoid@^3.1.23:
   version "3.1.30"
