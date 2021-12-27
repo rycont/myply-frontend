@@ -3,7 +3,13 @@ import { useRouter } from "next/router"
 import { fetchPlaylist } from "process/fetchPlaylist"
 import { Playlist, Song } from "myply-common"
 import React from "react"
-import { initDatabase, songDatabase } from "database"
+import {
+    initDatabase,
+    playlistDatabase,
+    Relation,
+    songDatabase,
+} from "database"
+import { Doc } from "types"
 
 export const FetchURIPage: NextPage<{
     fetched: Playlist[]
@@ -13,7 +19,7 @@ export const FetchURIPage: NextPage<{
     return <></>
 }
 
-async function mergeWithDatabase(song: Song) {
+async function mergeWithDatabase(song: Song): Promise<Doc<Song>> {
     const [preGenerated] = await songDatabase.get({
         filter: {
             and: [
@@ -41,7 +47,10 @@ async function mergeWithDatabase(song: Song) {
         if (channelIds[Object.keys(song.channelIds)[0]])
             return {
                 ...preGenerated,
-                channelIds: JSON.parse(preGenerated.channelIds),
+                channelIds: JSON.parse(preGenerated.channelIds) as Record<
+                    string,
+                    string
+                >,
             }
 
         await songDatabase.update(preGenerated._id, {
@@ -60,12 +69,12 @@ async function mergeWithDatabase(song: Song) {
         }
     }
 
-    await songDatabase.create({
+    const createdId = await songDatabase.create({
         ...song,
         channelIds: JSON.stringify(song.channelIds),
     })
 
-    return song
+    return { ...song, _id: createdId }
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
@@ -75,7 +84,26 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         query.playlistURI as string
     )) as Playlist
 
-    const merged = await Promise.all(fetched.tracks.map(mergeWithDatabase))
+    const merged: Doc<
+        Omit<Song, "channelIds"> & {
+            channelIds: string
+        }
+    >[] = (await Promise.all(fetched.tracks.map(mergeWithDatabase))).map(
+        (e) => ({
+            ...e,
+            channelIds: JSON.stringify(e.channelIds),
+        })
+    )
+
+    console.log("Songs Created")
+
+    await playlistDatabase.create({
+        name: "테스트테스트",
+        tracks: {
+            type: "Relation",
+            target: merged.map((e) => e._id),
+        },
+    })
 
     return { props: { fetched: merged } }
 }
