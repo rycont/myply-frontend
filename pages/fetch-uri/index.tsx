@@ -10,7 +10,7 @@ export const FetchURIPage: NextPage = (props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-    fetchPlaylist(query.playlistURI as string)
+    console.log(await fetchPlaylist(query.playlistURI as string))
     return {
         props: {},
     }
