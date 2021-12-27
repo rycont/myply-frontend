@@ -12,10 +12,8 @@ import {
 import { Doc } from "types"
 
 export const FetchURIPage: NextPage<{
-    fetched: Playlist[]
+    createdId: string
 }> = (props) => {
-    const router = useRouter()
-
     return <></>
 }
 
@@ -84,28 +82,37 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         query.playlistURI as string
     )) as Playlist
 
-    const merged: Doc<
-        Omit<Song, "channelIds"> & {
-            channelIds: string
-        }
-    >[] = (await Promise.all(fetched.tracks.map(mergeWithDatabase))).map(
-        (e) => ({
-            ...e,
-            channelIds: JSON.stringify(e.channelIds),
-        })
-    )
+    const merged = await Promise.all(fetched.tracks.map(mergeWithDatabase))
 
     console.log("Songs Created")
 
-    await playlistDatabase.create({
-        name: "테스트테스트",
+    const createdId = await playlistDatabase.create({
+        name: fetched.name,
         tracks: {
             type: "Relation",
-            target: merged.map((e) => e._id),
+            target: merged
+                .map((e) => ({
+                    ...e,
+                    channelIds: JSON.stringify(e.channelIds),
+                }))
+                .map((e) => e._id),
         },
     })
 
-    return { props: { fetched: merged } }
+    if (createdId)
+        return {
+            props: {
+                created: {
+                    name: fetched.name,
+                    tracks: merged,
+                },
+            },
+        }
+
+    return {
+        redirect: "google.co.kr",
+        props: {},
+    }
 }
 
 export default FetchURIPage
