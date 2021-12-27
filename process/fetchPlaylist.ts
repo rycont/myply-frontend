@@ -1,5 +1,5 @@
-import { SpotifyAdaptor } from "providers/myply-spotify-adapter"
-import { MelonAdapter } from "providers/myply-melon-adapter"
+import { SpotifyAdaptor } from "packages/myply-spotify-adapter"
+import { MelonAdapter } from "packages/myply-melon-adapter"
 
 const providers = [SpotifyAdaptor, MelonAdapter]
 

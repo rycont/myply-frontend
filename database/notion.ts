@@ -32,8 +32,11 @@ const getPageProperties = async (id: string) => {
 export const fetchDatabases = async () => {
     if (cachedDatabases) return cachedDatabases
     const page = await getPage();
+
+    console.log(page.results)
+
     cachedDatabases = page.results.map(e => ({
-        name: (e as { child_database: { title: string } }).child_database.title,
+        name: (e as { child_database: { title: string } })?.child_database?.title,
         id: e.id
     }))
     return cachedDatabases
@@ -101,7 +104,7 @@ const property2object = (content: CreatePageParameters['properties']) => {
 }
 
 const extendDocument = <T extends TypeBase, ExtendedType extends Record<string, unknown>>(keys: (keyof T)[]) =>
-    async (doc: T): Promise<T & ExtendedType> => {
+    async (doc: T): Promise<T & ExtendedType & { _id: string }> => {
         return {
             ...doc, ...Object.fromEntries(await Promise.all(keys.map(async key => [
                 key,
@@ -139,6 +142,14 @@ export class Database<DocumentType extends TypeBase> {
             properties: object2NotionProperty(content)
         });
         return res.id
+    }
+
+    async update(id: string, content: Partial<DocumentType>) {
+        await notion.pages.update({
+            page_id: id,
+            //@ts-ignore
+            properties: object2NotionProperty(content)
+        })
     }
 
     findById(id: string) {
