@@ -84,7 +84,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         query.playlistURI as string
     )) as Playlist
 
-    const merged = await Promise.all(fetched.tracks.map(mergeWithDatabase))
+    const merged = await Promise.all(
+        fetched.tracks.slice(0, 25).map(mergeWithDatabase)
+    )
 
     console.log("Songs Created")
 
