@@ -26,12 +26,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     })()
 
     return (
-        <Vexile padding={6} gap={6} filly>
+        <div style={{ padding: "6rem" }}>
             <LogoWapper>
                 <Image src="/logo.svg" layout="fill" />
             </LogoWapper>
+            <div style={{ height: "9rem" }}></div>
             <Component {...pageProps} />
-        </Vexile>
+        </div>
     )
 }
 

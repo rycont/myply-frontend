@@ -23,7 +23,7 @@ const getPage = async () => {
 
 const getPageProperties = async (id: string) => {
     const res = await notion.pages.retrieve({
-        page_id: id
+        page_id: id,
     })
     const props = (res as { properties: CreatePageParameters['properties'] }).properties
     return property2object(props)
@@ -32,8 +32,6 @@ const getPageProperties = async (id: string) => {
 export const fetchDatabases = async () => {
     if (cachedDatabases) return cachedDatabases
     const page = await getPage();
-
-    console.log(page.results)
 
     cachedDatabases = page.results.map(e => ({
         name: (e as { child_database: { title: string } })?.child_database?.title,
@@ -86,7 +84,7 @@ const object2NotionProperty = (content: TypeBase) => {
     }][])
 }
 
-const property2object = (content: CreatePageParameters['properties']) => {
+const property2object = (content: CreatePageParameters['properties']): TypeBase => {
     return Object.fromEntries(Object.entries(content).map(([key, value]: [string, {
         id: string;
         type: string;
@@ -152,8 +150,12 @@ export class Database<DocumentType extends TypeBase> {
         })
     }
 
-    findById(id: string) {
-        return getPageProperties(id)
+    async findById<ExtendedType extends Record<string, unknown>>(id: string, extend?: (keyof DocumentType)[]): Promise<DocumentType & ExtendedType> {
+        const props = await getPageProperties(id) as DocumentType
+        if(!props) throw new Error("Cannot find document")
+        if(!extend?.length) return props as DocumentType & ExtendedType
+        
+        return extendDocument<DocumentType, ExtendedType>(extend)(props)
     }
 }
 
