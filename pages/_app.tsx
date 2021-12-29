@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     globalCss({
         "@import": ["/ongothic/index.css"],
         html: {
-            fontSize: "6px",
+            fontSize: "4px",
             fontFamily: "KoddiUD OnGothic",
         },
         body: {

@@ -43,5 +43,5 @@ export const SectionHeader = typoGenerator(4.5, 700);
 export const Regular = typoGenerator(4, 400);
 export const Readable = typoGenerator(3.5, 400);
 export const IRegular = typoGenerator(4, 700);
-export const GDesc = typoGenerator(3.5, 400);
+export const GDesc = typoGenerator(3.5, 400, undefined, 0.4);
 export const IDesc = typoGenerator(3.5, 400);

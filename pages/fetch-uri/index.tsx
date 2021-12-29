@@ -12,6 +12,8 @@ import {
 import { Doc } from "types"
 
 export const FetchURIPage: NextPage<{
+    name: string
+    tracks: Song[]
     createdId: string
 }> = (props) => {
     return <></>
@@ -101,11 +103,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
     if (createdId)
         return {
+            redirect: `/playlist/${createdId}`,
             props: {
-                created: {
-                    name: fetched.name,
-                    tracks: merged,
-                },
+                name: fetched.name,
+                tracks: merged,
             },
         }
 

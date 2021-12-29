@@ -1,5 +1,6 @@
-import { styled } from "stitches.config";
-import { Hexile } from "./ezlay";
+import Link from "next/link"
+import { styled } from "stitches.config"
+import { Hexile } from "./ezlay"
 
 export const Fab = styled(Hexile, {
     boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
@@ -22,4 +23,9 @@ export const Button = styled(Hexile, {
     borderRadius: "6rem",
     gap: "1rem",
     alignItems: "center",
+})
+
+export const PlainLink = styled("a", {
+    textDecoration: "none",
+    color: "inherit",
 })
