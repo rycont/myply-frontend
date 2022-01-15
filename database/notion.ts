@@ -235,7 +235,7 @@ export class Database<DocumentType extends TypeBase> {
     async findById<ExtendedType extends Record<string, unknown>>(
         id: string,
         extend?: (keyof DocumentType)[]
-    ): Promise<DocumentType & ExtendedType> {
+    ): Promise<DocumentType & ExtendedType & { _id: string }> {
         const fetched = (await getPageProperties(id)) as DocumentType & {
             _id: string
         }
