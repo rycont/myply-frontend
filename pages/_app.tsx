@@ -7,7 +7,7 @@ import { globalCss, styled } from "stitches.config"
 
 const LogoWapper = styled("div", {
     width: "30rem",
-    height: "6rem",
+    minHeight: "6rem",
     position: "relative",
 })
 
