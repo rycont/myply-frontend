@@ -1,14 +1,20 @@
-import { modalContentAtom } from "coil"
-import { Button, GDesc, Header, Hexile, Input, Vexile, XDesc } from "components"
+import { Hexile, Vexile } from "@haechi/flexile"
+import {
+    Fab,
+    Header,
+    IRegular,
+    LoadSVG,
+    ProviderSelector,
+    XDesc,
+} from "components"
 import { initDatabase, playlistDatabase } from "database"
 import { Playlist, Song } from "myply-common"
 import { GetServerSideProps } from "next"
-import Link from "next/link"
-import { useEffect, useState } from "react"
-import { useRecoilState } from "recoil"
+import { useState } from "react"
 import { SongItem } from "./partial"
 
 export const NewPlaylist: React.FC<{ playlist: Playlist }> = ({ playlist }) => {
+    const [isSelectorOpen, setSelectorOpen] = useState(false)
     return (
         <Vexile gap={9}>
             <Vexile gap={1}>
@@ -20,6 +26,13 @@ export const NewPlaylist: React.FC<{ playlist: Playlist }> = ({ playlist }) => {
                     <SongItem song={song} />
                 ))}
             </Vexile>
+            <Fab onClick={() => setSelectorOpen(true)}>
+                <Hexile gap={1} y="center">
+                    <IRegular>내 음악 앱으로 열기</IRegular>
+                    <LoadSVG src="/icons/speaker.svg" width={5} height={5} />
+                </Hexile>
+            </Fab>
+            <ProviderSelector onClick={(e) => {}} />
         </Vexile>
     )
 }

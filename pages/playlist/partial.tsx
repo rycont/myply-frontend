@@ -1,4 +1,5 @@
-import { GDesc, Hexile, IRegular, Vexile } from "components"
+import { Hexile, Vexile } from "@haechi/flexile"
+import { GDesc, IRegular } from "components"
 import { Song } from "myply-common"
 
 export const SongItem = ({ song }: { song: Song }) => (

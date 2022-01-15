@@ -35,14 +35,15 @@ const getPageProperties = async (id: string) => {
     })
     const props = (res as { properties: CreatePageParameters["properties"] })
         .properties
-    return property2object(props)
+    return {
+        ...property2object(props),
+        _id: id,
+    }
 }
 
 export const fetchDatabases = async () => {
     if (cachedDatabases) return cachedDatabases
     const page = await getPage()
-
-    console.log(page.results)
 
     cachedDatabases = page.results.map((e) => ({
         name: (e as { child_database: { title: string } })?.child_database
@@ -234,9 +235,12 @@ export class Database<DocumentType extends TypeBase> {
     async findById<ExtendedType extends Record<string, unknown>>(
         id: string,
         extend?: (keyof DocumentType)[]
-    ) {
-        const fetched = (await getPageProperties(id)) as DocumentType
-        if (!extend) return fetched
+    ): Promise<DocumentType & ExtendedType> {
+        const fetched = (await getPageProperties(id)) as DocumentType & {
+            _id: string
+        }
+        if (!extend)
+            return fetched as DocumentType & ExtendedType & { _id: string }
         return extendDocument<DocumentType, ExtendedType>(extend)(fetched)
     }
 }

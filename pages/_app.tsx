@@ -1,7 +1,8 @@
+import { Vexile } from "@haechi/flexile"
 import { ModalPlaceholder } from "components"
-import { Vexile } from "components/ezlay"
 import { AppProps } from "next/app"
 import Image from "next/image"
+import Link from "next/link"
 import { RecoilRoot } from "recoil"
 import { globalCss, styled } from "stitches.config"
 
@@ -15,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     globalCss({
         "@import": ["/ongothic/index.css"],
         html: {
-            fontSize: "6px",
+            fontSize: "5px",
             fontFamily: "KoddiUD OnGothic",
         },
         body: {
@@ -31,9 +32,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <RecoilRoot>
             <ModalPlaceholder />
             <Vexile padding={6} gap={6} filly>
-                <LogoWapper>
-                    <Image src="/logo.svg" layout="fill" />
-                </LogoWapper>
+                <Link href="/">
+                    <a>
+                        <LogoWapper>
+                            <Image src="/logo.svg" layout="fill" />
+                        </LogoWapper>
+                    </a>
+                </Link>
                 <Component {...pageProps} />
             </Vexile>
         </RecoilRoot>

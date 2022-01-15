@@ -1,8 +1,4 @@
-import { SpotifyAdaptor } from "packages/myply-spotify-adapter"
-import { MelonAdapter } from "packages/myply-melon-adapter"
-import { Adaptor } from "myply-common"
-
-const providers: Adaptor[] = [SpotifyAdaptor, MelonAdapter]
+import { providers } from "constant"
 
 export const determineProvider = (uri: string) => {
     return providers.find((e) =>
