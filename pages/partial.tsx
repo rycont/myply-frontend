@@ -10,7 +10,7 @@ export const PlaylistItem: React.FC<
     return (
         <Vexile gap={1.5}>
             <Vexile>
-                <IRegular>{props.title}</IRegular>
+                <IRegular>{props.name}</IRegular>
                 <Hexile y="center">
                     <LoadSVG height={3} width={2} src="/icons/song.svg" />
                     <IDesc>{props.tracks.length}곡</IDesc>
@@ -19,7 +19,7 @@ export const PlaylistItem: React.FC<
             <GDesc>
                 {props.tracks
                     .slice(0, 5)
-                    .map((e) => e.title)
+                    .map((e) => e.name)
                     .join(" ")}
                 {props.tracks.length > 5
                     ? `외 ${props.tracks.length - 1}곡`

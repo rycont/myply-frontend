@@ -1,8 +1,8 @@
 import { GetServerSideProps, NextPage } from "next"
-import { useRouter } from "next/router"
+import { Router, useRouter } from "next/router"
 import { fetchPlaylist } from "process/fetchPlaylist"
 import { Playlist, Song } from "myply-common"
-import React from "react"
+import React, { useEffect } from "react"
 import {
     initDatabase,
     playlistDatabase,
@@ -10,10 +10,20 @@ import {
     songDatabase,
 } from "database"
 import { Doc } from "types"
+import { useRecoilState } from "recoil"
+import { modalContentAtom } from "coil"
 
 export const FetchURIPage: NextPage<{
     createdId: string
 }> = (props) => {
+    const setModal = useRecoilState(modalContentAtom)[1]
+    const router = useRouter()
+
+    useEffect(() => {
+        setModal(null)
+        router.push(`/playlist/${props.createdId}`)
+    }, [])
+
     return <></>
 }
 
@@ -44,7 +54,9 @@ async function mergeWithDatabase(song: Song): Promise<Doc<Song>> {
         >
         if (channelIds[Object.keys(song.channelIds)[0]])
             return {
-                ...preGenerated,
+                ...(preGenerated as Omit<Song, "channelIds"> & {
+                    channelIds: string
+                } & { _id: string }),
                 channelIds: JSON.parse(preGenerated.channelIds) as Record<
                     string,
                     string
@@ -59,7 +71,9 @@ async function mergeWithDatabase(song: Song): Promise<Doc<Song>> {
         })
 
         return {
-            ...preGenerated,
+            ...(preGenerated as Omit<Song, "channelIds"> & {
+                channelIds: string
+            } & { _id: string }),
             channelIds: {
                 ...channelIds,
                 ...song.channelIds,
@@ -102,15 +116,11 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     if (createdId)
         return {
             props: {
-                created: {
-                    name: fetched.name,
-                    tracks: merged,
-                },
+                createdId,
             },
         }
 
     return {
-        redirect: "google.co.kr",
         props: {},
     }
 }

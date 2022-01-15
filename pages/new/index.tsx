@@ -1,9 +1,13 @@
+import { modalContentAtom } from "coil"
 import { Button, GDesc, Header, Input, Vexile, XDesc } from "components"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { useRecoilState } from "recoil"
 
 export const NewPlaylist: React.FC = () => {
     const [playlistURI, setPlaylistURI] = useState<string>()
+    const setModal = useRecoilState(modalContentAtom)[1]
+
     return (
         <Vexile filly gap={6} y="center" x="center">
             <Vexile gap={1.5} x="center">
@@ -24,7 +28,17 @@ export const NewPlaylist: React.FC = () => {
                 }}
             >
                 <a>
-                    <Button>다음</Button>
+                    <Button
+                        onClick={() =>
+                            setModal({
+                                title: "잠시만 기다려주세요 ..",
+                                content: "플레이리스트 주소를 가져오고 있어요",
+                                dismissable: true,
+                            })
+                        }
+                    >
+                        다음
+                    </Button>
                 </a>
             </Link>
         </Vexile>

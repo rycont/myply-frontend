@@ -1,6 +1,8 @@
+import { ModalPlaceholder } from "components"
 import { Vexile } from "components/ezlay"
 import { AppProps } from "next/app"
 import Image from "next/image"
+import { RecoilRoot } from "recoil"
 import { globalCss, styled } from "stitches.config"
 
 const LogoWapper = styled("div", {
@@ -26,12 +28,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     })()
 
     return (
-        <Vexile padding={6} gap={6} filly>
-            <LogoWapper>
-                <Image src="/logo.svg" layout="fill" />
-            </LogoWapper>
-            <Component {...pageProps} />
-        </Vexile>
+        <RecoilRoot>
+            <ModalPlaceholder />
+            <Vexile padding={6} gap={6} filly>
+                <LogoWapper>
+                    <Image src="/logo.svg" layout="fill" />
+                </LogoWapper>
+                <Component {...pageProps} />
+            </Vexile>
+        </RecoilRoot>
     )
 }
 
