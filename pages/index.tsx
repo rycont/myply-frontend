@@ -1,17 +1,22 @@
 import { GetServerSideProps } from "next"
 import { Playlist, Song } from "myply-common"
-import { Fab, Header, LoadSVG, Vexile } from "components"
+import { Fab, Header, LoadSVG, PlainLink } from "components"
 import { PlaylistItem } from "./partial"
 import { initDatabase, playlistDatabase } from "database"
 import { Doc } from "types"
 import Link from "next/link"
+import { Vexile } from "@haechi/flexile"
 
 export default function Home(props: { recents: Doc<Playlist>[] }) {
     return (
         <Vexile gap={3}>
             <Header>방금 올라온 플리</Header>
             {props.recents.map((recent) => (
-                <PlaylistItem {...recent} onClick={console.log} />
+                <Link href={`/playlist/${recent._id}`} key={recent._id}>
+                    <PlainLink>
+                        <PlaylistItem {...recent} />
+                    </PlainLink>
+                </Link>
             ))}
             <Link href="/new">
                 <a>

@@ -1,4 +1,4 @@
-import { Hexile, LoadSVG } from "components"
+import { LoadSVG } from "components"
 import React from "react"
 import { LogicalInput, Wrapper } from "./style"
 

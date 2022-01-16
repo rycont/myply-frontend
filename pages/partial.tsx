@@ -1,12 +1,9 @@
 import { Playlist } from "myply-common"
-import { GDesc, Hexile, IDesc, IRegular, LoadSVG, Vexile } from "components"
+import { GDesc, IDesc, IRegular, LoadSVG } from "components"
 import React from "react"
+import { Hexile, Vexile } from "@haechi/flexile"
 
-export const PlaylistItem: React.FC<
-    Playlist & {
-        onClick(): void
-    }
-> = (props) => {
+export const PlaylistItem: React.FC<Playlist> = (props) => {
     return (
         <Vexile gap={1.5}>
             <Vexile>
@@ -20,7 +17,7 @@ export const PlaylistItem: React.FC<
                 {props.tracks
                     .slice(0, 5)
                     .map((e) => e.name)
-                    .join(" ")}
+                    .join(", ")}
                 {props.tracks.length > 5
                     ? `외 ${props.tracks.length - 1}곡`
                     : null}

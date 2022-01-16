@@ -24,3 +24,8 @@ export const Button = styled(Hexile, {
     gap: "1rem",
     alignItems: "center",
 })
+
+export const PlainLink = styled("a", {
+    textDecoration: "none",
+    color: "inherit",
+})

@@ -26,8 +26,8 @@ export const NewPlaylist: React.FC<{ playlist: Doc<Playlist> }> = ({
                 <XDesc>{playlist.tracks.length}개 곡</XDesc>
             </Vexile>
             <Vexile gap={5}>
-                {playlist.tracks.map((song) => (
-                    <SongItem song={song} />
+                {playlist.tracks.map((song, i) => (
+                    <SongItem song={song} index={i + 1} />
                 ))}
             </Vexile>
             <Fab onClick={() => setSelectorOpen(true)}>

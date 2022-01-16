@@ -14,6 +14,8 @@ import { useRecoilState } from "recoil"
 import { modalContentAtom } from "coil"
 
 export const FetchURIPage: NextPage<{
+    name: string
+    tracks: Song[]
     createdId: string
 }> = (props) => {
     const setModal = useRecoilState(modalContentAtom)[1]
@@ -96,12 +98,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         query.playlistURI as string
     )) as Playlist
 
-    const merged = await Promise.all(fetched.tracks.map(mergeWithDatabase))
+    const merged = await Promise.all(
+        fetched.tracks.slice(0, 25).map(mergeWithDatabase)
+    )
 
     console.log("Songs Created")
 
     const createdId = await playlistDatabase.create({
-        name: fetched.name,
+        ...fetched,
         tracks: {
             type: "Relation",
             target: merged
@@ -111,10 +115,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
                 }))
                 .map((e) => e._id),
         },
+        preGenerated: JSON.stringify(fetched.preGenerated),
     })
 
     if (createdId)
         return {
+            redirect: `/playlist/${createdId}`,
             props: {
                 createdId,
             },

@@ -1,7 +1,8 @@
+import { Vexile } from "@haechi/flexile"
 import { modalContentAtom } from "coil"
-import { Button, GDesc, Header, Input, Vexile, XDesc } from "components"
+import { Button, Header, Input, XDesc } from "components"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useRecoilState } from "recoil"
 
 export const NewPlaylist: React.FC = () => {
