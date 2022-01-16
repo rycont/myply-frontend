@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { RecoilRoot } from "recoil"
 import { globalCss, styled } from "stitches.config"
+import "style/ongothic/index.css"
 
 const LogoWapper = styled("div", {
     width: "30rem",
@@ -31,7 +32,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
-                <link rel="stylesheet" href="/ongothic/index.css" />
                 <link rel="icon" href="/favicon.svg" />
                 <title>마이플리</title>
             </Head>

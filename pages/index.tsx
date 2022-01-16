@@ -1,17 +1,18 @@
-import { GetServerSideProps } from "next"
 import { Playlist, Song } from "myply-common"
 import { Fab, Header, LoadSVG, PlainLink } from "components"
 import { PlaylistItem } from "./partial"
-import { initDatabase, playlistDatabase } from "database"
 import { Doc } from "types"
 import Link from "next/link"
 import { Vexile } from "@haechi/flexile"
+import {List} from 'react-content-loader'
+import { useConnect } from "connector"
 
-export default function Home(props: { recents: Doc<Playlist>[] }) {
+export default function Home() {
+    const recents = useConnect<undefined, Doc<Playlist>[]>('recent', undefined)
     return (
         <Vexile gap={3}>
             <Header>방금 올라온 플리</Header>
-            {props.recents.map((recent) => (
+            {recents ? recents.map((recent) => (
                 <Link
                     href={`/playlist/${recent._id}`}
                     key={recent._id}
@@ -21,7 +22,7 @@ export default function Home(props: { recents: Doc<Playlist>[] }) {
                         <PlaylistItem {...recent} />
                     </PlainLink>
                 </Link>
-            ))}
+            )) : <List  />}
             <Link href="/new">
                 <a>
                     <Fab>
@@ -39,25 +40,4 @@ export default function Home(props: { recents: Doc<Playlist>[] }) {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    await initDatabase()
-    const recents = await playlistDatabase.get<{
-        tracks: Song[]
-    }>(
-        {
-            sorts: [
-                {
-                    timestamp: "created_time",
-                    direction: "ascending",
-                },
-            ],
-        },
-        ["tracks"]
-    )
 
-    return {
-        props: {
-            recents,
-        },
-    }
-}
