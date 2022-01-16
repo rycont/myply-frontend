@@ -23,7 +23,7 @@ export const ModalPlaceholder = () => {
             filly
             x="center"
             y="center"
-            onClick={() => content.dismissable || setContent(null)}
+            onClick={() => content.dismissable && setContent(null)}
         >
             <ModalWrapper
                 fillx

@@ -15,8 +15,8 @@ export const NewPlaylist: React.FC = () => {
     const processPlaylist = async () => {
         setModal({
             title: "잠시만 기다려주세요 ..",
-            content: "플레이리스트 주소를 가져오고 있어요",
-            dismissable: true,
+            content: "플레이리스트에 어떤 노래가 담겨있는지 읽고 있어요",
+            dismissable: false,
         })
 
         const { createdId } = await connect<unknown, { createdId: string }>(
