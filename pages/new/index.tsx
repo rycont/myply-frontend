@@ -35,7 +35,9 @@ export const NewPlaylist: React.FC = () => {
         <Vexile filly gap={6} y="center" x="center">
             <Vexile gap={1.5} x="center">
                 <Header>내 플리 공유</Header>
-                <XDesc>플리 URL을 입력해주세요</XDesc>
+                <XDesc>
+                    플리 URL을 입력해주세요. 멜론, 스포티파이를 지원해요.
+                </XDesc>
             </Vexile>
             <Input
                 placeholder="URL 입력"
