@@ -1,0 +1,7 @@
+[submodule "myply-melon-adapter"]
+    path = packages/myply-melon-adapter
+    url = https://github.com/rycont/myply-melon-adapter
+
+[submodule "myply-spotify-adapter"]
+    path = packages/myply-spotify-adapter
+    url = https://github.com/rycont/myply-spotify-adapter
