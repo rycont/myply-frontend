@@ -11,7 +11,7 @@ import {
 import { initDatabase, playlistDatabase } from "database"
 import { Playlist, Song } from "myply-common"
 import { GetServerSideProps } from "next"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Doc } from "types"
 import { SongItem } from "./partial"
 
@@ -19,6 +19,11 @@ export const NewPlaylist: React.FC<{ playlist: Doc<Playlist> }> = ({
     playlist,
 }) => {
     const [isSelectorOpen, setSelectorOpen] = useState(false)
+
+    useEffect(() => {
+        document.title = `${playlist.name} : 마이플리`
+    }, [playlist])
+
     return (
         <Vexile gap={9}>
             <Vexile gap={1}>

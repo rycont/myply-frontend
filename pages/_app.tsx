@@ -1,6 +1,7 @@
 import { Vexile } from "@haechi/flexile"
 import { ModalPlaceholder } from "components"
 import { AppProps } from "next/app"
+import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { RecoilRoot } from "recoil"
@@ -29,19 +30,25 @@ function MyApp({ Component, pageProps }: AppProps) {
     })()
 
     return (
-        <RecoilRoot>
-            <ModalPlaceholder />
-            <Vexile padding={6} gap={6} filly>
-                <Link href="/">
-                    <a>
-                        <LogoWapper>
-                            <Image src="/logo.svg" layout="fill" />
-                        </LogoWapper>
-                    </a>
-                </Link>
-                <Component {...pageProps} />
-            </Vexile>
-        </RecoilRoot>
+        <>
+            <Head>
+                <link rel="icon" href="/favicon.svg" />
+                <title>마이플리</title>
+            </Head>
+            <RecoilRoot>
+                <ModalPlaceholder />
+                <Vexile padding={6} gap={6} filly>
+                    <Link href="/">
+                        <a>
+                            <LogoWapper>
+                                <Image src="/logo.svg" layout="fill" />
+                            </LogoWapper>
+                        </a>
+                    </Link>
+                    <Component {...pageProps} />
+                </Vexile>
+            </RecoilRoot>
+        </>
     )
 }
 
