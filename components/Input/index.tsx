@@ -9,7 +9,12 @@ export const Input: React.FC<{
 }> = (props) => {
     return (
         <Wrapper y="center" gap={3}>
-            <LoadSVG src="/icons/link.svg" width={5} height={5} />
+            <LoadSVG
+                src="/icons/link.svg"
+                width={5}
+                height={5}
+                alt="링크 아이콘"
+            />
             <LogicalInput
                 placeholder={props.placeholder}
                 onChange={

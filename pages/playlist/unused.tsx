@@ -17,7 +17,12 @@ export const PlaylistPage: NextPage<{
                 </Vexile>
                 <Hexile gap={3}>
                     <Hexile gap={0.5}>
-                        <LoadSVG width={5} height={5} src="/icons/share.svg" />
+                        <LoadSVG
+                            alt="공유 아이콘"
+                            width={5}
+                            height={5}
+                            src="/icons/share.svg"
+                        />
                         <IRegular accent>공유</IRegular>
                     </Hexile>
                 </Hexile>

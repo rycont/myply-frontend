@@ -1,6 +1,7 @@
 import { modalContentAtom } from "coil"
+import { MouseEvent } from "react"
 import { useRecoilState } from "recoil"
-import { Button, GDesc, IRegular, Readable, Regular } from ".."
+import { Button, IRegular, Readable } from ".."
 import { ModalBackdrop, ModalWrapper } from "./style"
 
 export interface ModalContent {
@@ -28,7 +29,7 @@ export const ModalPlaceholder = () => {
                 fillx
                 padding={6}
                 gap={4}
-                onClick={(e) => e.preventDefault()}
+                onClick={(e: MouseEvent) => e.preventDefault()}
             >
                 <IRegular>{content.title}</IRegular>
                 <Readable>{content.content}</Readable>

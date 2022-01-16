@@ -1,5 +1,5 @@
+import { Vexile } from "@haechi/flexile"
 import { styled } from "stitches.config"
-import { Vexile } from ".."
 
 export const ModalBackdrop = styled(Vexile, {
     backgroundColor: "rgba(0, 0, 0, 0.3)",

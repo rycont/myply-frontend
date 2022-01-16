@@ -1,5 +1,5 @@
 import { Playlist } from "myply-common"
-import { GDesc, IDesc, IRegular, LoadSVG } from "components"
+import { GDesc, IDesc, IRegular, LoadSVG, Redirector } from "components"
 import React from "react"
 import { Hexile, Vexile } from "@haechi/flexile"
 
@@ -9,7 +9,12 @@ export const PlaylistItem: React.FC<Playlist> = (props) => {
             <Vexile>
                 <IRegular>{props.name}</IRegular>
                 <Hexile y="center">
-                    <LoadSVG height={3} width={2} src="/icons/song.svg" />
+                    <LoadSVG
+                        alt="노래 갯수 아이콘"
+                        height={3}
+                        width={2}
+                        src="/icons/song.svg"
+                    />
                     <IDesc>{props.tracks.length}곡</IDesc>
                 </Hexile>
             </Vexile>
@@ -25,3 +30,5 @@ export const PlaylistItem: React.FC<Playlist> = (props) => {
         </Vexile>
     )
 }
+
+export default Redirector

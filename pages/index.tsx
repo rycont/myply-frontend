@@ -12,7 +12,11 @@ export default function Home(props: { recents: Doc<Playlist>[] }) {
         <Vexile gap={3}>
             <Header>방금 올라온 플리</Header>
             {props.recents.map((recent) => (
-                <Link href={`/playlist/${recent._id}`} key={recent._id}>
+                <Link
+                    href={`/playlist/${recent._id}`}
+                    key={recent._id}
+                    passHref={true}
+                >
                     <PlainLink>
                         <PlaylistItem {...recent} />
                     </PlainLink>
@@ -23,6 +27,7 @@ export default function Home(props: { recents: Doc<Playlist>[] }) {
                     <Fab>
                         내 플리 공유하기
                         <LoadSVG
+                            alt="플레이리스트 업로드 아이콘"
                             src="/icons/playlist.svg"
                             height={5}
                             width={5}

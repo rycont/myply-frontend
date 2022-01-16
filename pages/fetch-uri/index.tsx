@@ -1,14 +1,9 @@
 import { GetServerSideProps, NextPage } from "next"
-import { Router, useRouter } from "next/router"
+import { useRouter } from "next/router"
 import { fetchPlaylist } from "process/fetchPlaylist"
 import { Playlist, Song } from "myply-common"
 import React, { useEffect } from "react"
-import {
-    initDatabase,
-    playlistDatabase,
-    Relation,
-    songDatabase,
-} from "database"
+import { initDatabase, playlistDatabase, songDatabase } from "database"
 import { Doc } from "types"
 import { useRecoilState } from "recoil"
 import { modalContentAtom } from "coil"
@@ -24,7 +19,7 @@ export const FetchURIPage: NextPage<{
     useEffect(() => {
         setModal(null)
         router.push(`/playlist/${props.createdId}`)
-    }, [])
+    }, [props.createdId, router, setModal])
 
     return <></>
 }

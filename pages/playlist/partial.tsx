@@ -1,5 +1,5 @@
 import { Hexile, Vexile } from "@haechi/flexile"
-import { GDesc, IRegular } from "components"
+import { GDesc, IRegular, Redirector } from "components"
 import { Song } from "myply-common"
 
 export const SongItem = ({ song, ...props }: { song: Song; index: number }) => (
@@ -11,3 +11,5 @@ export const SongItem = ({ song, ...props }: { song: Song; index: number }) => (
         </Vexile>
     </Hexile>
 )
+
+export default Redirector

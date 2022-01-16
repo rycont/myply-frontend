@@ -41,7 +41,11 @@ function MyApp({ Component, pageProps }: AppProps) {
                     <Link href="/">
                         <a>
                             <LogoWapper>
-                                <Image src="/logo.svg" layout="fill" />
+                                <Image
+                                    src="/logo.svg"
+                                    layout="fill"
+                                    alt="서비스 로고"
+                                />
                             </LogoWapper>
                         </a>
                     </Link>

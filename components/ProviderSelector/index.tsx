@@ -16,9 +16,10 @@ export const ProviderSelector: React.FC<{
                 onClick={(e) => e.stopPropagation()}
             >
                 {[...Array(Math.ceil(providers.length / 2))].map((_, i) => (
-                    <Hexile gap={3}>
+                    <Hexile gap={3} key={i}>
                         {[...Array(2)].map((_, j) => (
                             <ProviderItem
+                                key={j}
                                 provider={providers[i * 2 + j]}
                                 onClick={onClick}
                             />

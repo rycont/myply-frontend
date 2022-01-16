@@ -32,13 +32,22 @@ export const NewPlaylist: React.FC<{ playlist: Doc<Playlist> }> = ({
             </Vexile>
             <Vexile gap={5}>
                 {playlist.tracks.map((song, i) => (
-                    <SongItem song={song} index={i + 1} />
+                    <SongItem
+                        song={song}
+                        index={i + 1}
+                        key={song.artist + song.name + i}
+                    />
                 ))}
             </Vexile>
             <Fab onClick={() => setSelectorOpen(true)}>
                 <Hexile gap={1} y="center">
                     <IRegular>내 음악 앱으로 열기</IRegular>
-                    <LoadSVG src="/icons/speaker.svg" width={5} height={5} />
+                    <LoadSVG
+                        alt="재생 아이콘"
+                        src="/icons/speaker.svg"
+                        width={5}
+                        height={5}
+                    />
                 </Hexile>
             </Fab>
             {isSelectorOpen && (
