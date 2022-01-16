@@ -11,14 +11,13 @@ export default <NextApiHandler>(async (_, res) => {
             sorts: [
                 {
                     timestamp: "created_time",
-                    direction: "ascending",
+                    direction: "descending",
                 },
             ],
+            page_size: 10,
         },
         ["tracks"]
     )
 
-    res.json(
-        recents,
-     )
+    res.json(recents)
 })
