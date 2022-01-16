@@ -10,8 +10,8 @@ export const LoadSVG: React.FC<{
         <div
             style={{
                 position: "relative",
-                height: props.height + "rem",
-                width: props.width + "rem",
+                minHeight: props.height + "rem",
+                minWidth: props.width + "rem",
             }}
         >
             <Image src={props.src} layout="fill" alt={props.alt} />

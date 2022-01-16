@@ -3,21 +3,24 @@ import axios from "axios"
 import { modalContentAtom } from "coil"
 import {
     Fab,
+    GDesc,
     Header,
     IRegular,
     LoadSVG,
     ProviderSelector,
+    Readable,
     XDesc,
 } from "components"
 import { useConnect } from "connector"
 import { Adaptor, Playlist } from "myply-common"
 import { NextPage } from "next"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { MouseEventHandler, useEffect, useState } from "react"
 import { BulletList } from "react-content-loader"
 import { useRecoilState } from "recoil"
 import { Doc } from "types"
 import { SongItem } from "./partial"
+import { CopyArea, CopyUrl } from "./style"
 
 export const NewPlaylist: NextPage = ({}) => {
     const router = useRouter()
@@ -25,6 +28,49 @@ export const NewPlaylist: NextPage = ({}) => {
     const setModal = useRecoilState(modalContentAtom)[1]
 
     const [isSelectorOpen, setSelectorOpen] = useState(false)
+
+    const copyAll: MouseEventHandler = (e) => {
+        e.stopPropagation()
+        if (!e.target || !window) return
+
+        const range = document.createRange()
+        range.selectNode(e.target as HTMLParagraphElement)
+        window.getSelection()?.removeAllRanges()
+        window.getSelection()?.addRange(range)
+    }
+
+    useEffect(() => {
+        console.log(router)
+        if (router.query.first === "")
+            setModal({
+                title: "성공적으로 업로드했어요! 👍",
+                content: (
+                    <Vexile gap={4}>
+                        <Readable>
+                            아래 링크를 공유하면 다른 사람이 플레이리스트를
+                            감상할 수 있어요
+                        </Readable>
+                        <CopyArea gap={2}>
+                            <LoadSVG
+                                alt="복사 아이콘"
+                                height={3}
+                                width={3}
+                                src="/icons/copy.svg"
+                            />
+                            <CopyUrl onClick={copyAll}>
+                                https://myply.rycont.ninja
+                                {router.asPath.split("?")[0]}
+                            </CopyUrl>
+                        </CopyArea>
+                    </Vexile>
+                ),
+                button: {
+                    label: "확인👌",
+                    action: () => setModal(null),
+                },
+                dismissable: true,
+            })
+    }, [])
 
     useEffect(() => {
         if (playlist) document.title = `${playlist.name} : 마이플리`

@@ -28,7 +28,7 @@ export const NewPlaylist: React.FC = () => {
 
         setModal(null)
 
-        router.push(`/playlist/${createdId}`)
+        router.push(`/playlist/${createdId}?first`)
     }
 
     return (

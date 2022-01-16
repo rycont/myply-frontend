@@ -1,3 +1,4 @@
+import { Hexile } from "@haechi/flexile"
 import { modalContentAtom } from "coil"
 import { MouseEvent } from "react"
 import { useRecoilState } from "recoil"
@@ -5,7 +6,7 @@ import { Button, IRegular, Readable } from ".."
 import { ModalBackdrop, ModalWrapper } from "./style"
 
 export interface ModalContent {
-    content: string
+    content: JSX.Element | string
     title: string
     button?: {
         label: string
@@ -29,14 +30,20 @@ export const ModalPlaceholder = () => {
                 fillx
                 padding={6}
                 gap={4}
-                onClick={(e: MouseEvent) => e.preventDefault()}
+                onClick={(e: MouseEvent) => e.stopPropagation()}
             >
                 <IRegular>{content.title}</IRegular>
-                <Readable>{content.content}</Readable>
+                {typeof content.content === "string" ? (
+                    <Readable>{content.content}</Readable>
+                ) : (
+                    content.content
+                )}
                 {content.button && (
-                    <Button onClick={content.button.action}>
-                        {content.button.label}
-                    </Button>
+                    <Hexile fillx x="right">
+                        <IRegular onClick={content.button.action} accent>
+                            {content.button.label}
+                        </IRegular>
+                    </Hexile>
                 )}
             </ModalWrapper>
         </ModalBackdrop>
