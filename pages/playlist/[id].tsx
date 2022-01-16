@@ -70,7 +70,7 @@ export const NewPlaylist: NextPage = ({}) => {
                 },
                 dismissable: true,
             })
-    }, [])
+    }, [router, setModal])
 
     useEffect(() => {
         if (playlist) document.title = `${playlist.name} : 마이플리`
