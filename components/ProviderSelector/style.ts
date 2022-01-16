@@ -1,5 +1,10 @@
 import { Vexile } from "@haechi/flexile"
-import { styled } from "stitches.config"
+import { keyframes, styled } from "stitches.config"
+
+const appear = keyframes({
+    "0%": { transform: "translateY(100%)" },
+    "100%": { transform: "translateY(0%)" },
+})
 
 export const Backdrop = styled(Vexile, {
     position: "fixed",
@@ -12,6 +17,7 @@ export const PanelWrapper = styled(Vexile, {
     backgroundColor: "white",
     borderTopLeftRadius: "6rem",
     borderTopRightRadius: "6rem",
+    animation: `${appear} 200ms`,
 })
 
 export const ProviderItemWrapper = styled(Vexile, {

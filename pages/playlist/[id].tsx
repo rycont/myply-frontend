@@ -36,17 +36,21 @@ export const NewPlaylist: React.FC<{ playlist: Doc<Playlist> }> = ({
                     <LoadSVG src="/icons/speaker.svg" width={5} height={5} />
                 </Hexile>
             </Fab>
-            <ProviderSelector
-                onClick={async (e) => {
-                    window.open(
-                        (
-                            await axios(
-                                `/api/${playlist._id}/${e.determinator[0]}`
-                            )
-                        ).data.uri
-                    )
-                }}
-            />
+            {isSelectorOpen && (
+                <ProviderSelector
+                    close={() => setSelectorOpen(false)}
+                    onClick={async (e) => {
+                        window.open(
+                            (
+                                await axios(
+                                    `/api/${playlist._id}/${e.determinator[0]}`
+                                )
+                            ).data.uri
+                        )
+                        setSelectorOpen(false)
+                    }}
+                />
+            )}
         </Vexile>
     )
 }
