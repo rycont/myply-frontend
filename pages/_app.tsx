@@ -15,7 +15,6 @@ const LogoWapper = styled("div", {
 
 function MyApp({ Component, pageProps }: AppProps) {
     globalCss({
-        "@import": ["/ongothic/index.css"],
         html: {
             fontSize: "4px",
             fontFamily: "KoddiUD OnGothic",
@@ -32,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
+                <link rel="stylesheet" href="/ongothic/index.css" />
                 <link rel="icon" href="/favicon.svg" />
                 <title>마이플리</title>
             </Head>
