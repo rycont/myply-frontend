@@ -69,6 +69,7 @@ async function mergeWithDatabase(song: Song): Promise<Doc<Song>> {
 export default <NextApiHandler>(async (req, res) => {
     await initDatabase()
 
+    console.log(req.body)
     const fetched = (await fetchPlaylist(
         req.body.playlistURI as string
     )) as Playlist

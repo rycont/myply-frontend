@@ -8,22 +8,29 @@ import {
     ProviderSelector,
     XDesc,
 } from "components"
-import { initDatabase, playlistDatabase } from "database"
-import { Playlist, Song } from "myply-common"
-import { GetServerSideProps } from "next"
+import { useConnect } from "connector"
+import { Playlist } from "myply-common"
+import { NextPage } from "next"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { BulletList } from "react-content-loader"
 import { Doc } from "types"
 import { SongItem } from "./partial"
 
-export const NewPlaylist: React.FC<{ playlist: Doc<Playlist> }> = ({
-    playlist,
-}) => {
+export const NewPlaylist: NextPage = ({}) => {
+    const router = useRouter()
+    console.log(router.asPath)
+    const playlist = useConnect<unknown, Doc<Playlist>>(router.asPath, null)
+
     const [isSelectorOpen, setSelectorOpen] = useState(false)
 
     useEffect(() => {
-        document.title = `${playlist.name} : 마이플리`
+        if (playlist) document.title = `${playlist.name} : 마이플리`
     }, [playlist])
 
+    if (!playlist) return <BulletList />
+
+    console.log(playlist)
     return (
         <Vexile gap={9}>
             <Vexile gap={1}>
@@ -57,7 +64,7 @@ export const NewPlaylist: React.FC<{ playlist: Doc<Playlist> }> = ({
                         window.open(
                             (
                                 await axios(
-                                    `/api/${playlist._id}/${e.determinator[0]}`
+                                    `/api/playlist/${playlist._id}/${e.determinator[0]}`
                                 )
                             ).data.uri
                         )
@@ -67,20 +74,6 @@ export const NewPlaylist: React.FC<{ playlist: Doc<Playlist> }> = ({
             )}
         </Vexile>
     )
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    await initDatabase()
-    if (!params) return { props: {} }
-    const playlist = await playlistDatabase.findById<{
-        tracks: Song[]
-    }>(params.id as string, ["tracks"])
-
-    return {
-        props: {
-            playlist,
-        },
-    }
 }
 
 export default NewPlaylist
