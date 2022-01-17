@@ -1,6 +1,6 @@
 import { Vexile } from "@haechi/flexile"
-import { IRegular } from "components"
 import { Adaptor } from "myply-common"
+import { IRegular } from "components"
 import { FixedSizeItem, ProviderItemWrapper } from "./style"
 
 export const ProviderItem: React.FC<{

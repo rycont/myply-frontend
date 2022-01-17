@@ -1,6 +1,6 @@
-import { LoadSVG } from "components"
 import React from "react"
 import { LogicalInput, Wrapper } from "./style"
+import { LoadSVG } from "components"
 
 export const Input: React.FC<{
     icon: string

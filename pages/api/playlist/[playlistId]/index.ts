@@ -1,6 +1,6 @@
-import { initDatabase, playlistDatabase } from "database"
 import { Song } from "myply-common"
 import { NextApiHandler } from "next"
+import { initDatabase, playlistDatabase } from "database"
 
 export default <NextApiHandler>(async (req, res) => {
     console.log("주소", req.query.playlistId)

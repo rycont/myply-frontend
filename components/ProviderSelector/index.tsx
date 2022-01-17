@@ -1,8 +1,8 @@
-import { providers } from "constant"
+import { Adaptor } from "myply-common"
 import { Hexile } from "@haechi/flexile"
+import { providers } from "constant"
 import { Backdrop, PanelWrapper } from "./style"
 import { ProviderItem } from "./partial"
-import { Adaptor } from "myply-common"
 
 export const ProviderSelector: React.FC<{
     onClick(d: Adaptor): void

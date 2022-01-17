@@ -1,11 +1,11 @@
+import { List } from "react-content-loader"
 import { Playlist } from "myply-common"
+import Link from "next/link"
 import { Fab, Header, LoadSVG, PlainLink } from "components"
 import { PlaylistItem } from "./partial"
-import { Doc } from "types"
-import Link from "next/link"
 import { Vexile } from "@haechi/flexile"
-import { List } from "react-content-loader"
 import { useConnect } from "connector"
+import { Doc } from "types"
 
 export default function Home() {
     const recents = useConnect<undefined, Doc<Playlist>[]>("recent", undefined)

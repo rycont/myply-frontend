@@ -1,4 +1,5 @@
-import { CommonError, providers } from "constant"
+import { providers } from "constant"
+import { CommonError } from "error"
 
 export const determineProvider = (uri: string) => {
     return providers.find((e) =>

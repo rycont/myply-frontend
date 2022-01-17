@@ -1,8 +1,8 @@
 import { Hexile } from "@haechi/flexile"
-import { modalContentAtom } from "coil"
 import { MouseEvent } from "react"
 import { useRecoilState } from "recoil"
-import { Button, IRegular, Readable } from ".."
+import { modalContentAtom } from "coil"
+import { IRegular, Readable } from ".."
 import { ModalBackdrop, ModalWrapper } from "./style"
 
 export interface ModalContent {

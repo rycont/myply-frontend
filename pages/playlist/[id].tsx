@@ -1,9 +1,17 @@
+import { MouseEventHandler, useEffect, useState } from "react"
+import { Adaptor, Playlist } from "myply-common"
+import { BulletList } from "react-content-loader"
 import { Hexile, Vexile } from "@haechi/flexile"
+import { useRecoilState } from "recoil"
+import { useRouter } from "next/router"
+import { NextPage } from "next"
 import axios from "axios"
+import { CopyArea, CopyUrl } from "./style"
 import { modalContentAtom } from "coil"
+import { useConnect } from "connector"
+import { SongItem } from "./partial"
 import {
     Fab,
-    GDesc,
     Header,
     IRegular,
     LoadSVG,
@@ -11,16 +19,7 @@ import {
     Readable,
     XDesc,
 } from "components"
-import { useConnect } from "connector"
-import { Adaptor, Playlist } from "myply-common"
-import { NextPage } from "next"
-import { useRouter } from "next/router"
-import { MouseEventHandler, useEffect, useState } from "react"
-import { BulletList } from "react-content-loader"
-import { useRecoilState } from "recoil"
 import { Doc } from "types"
-import { SongItem } from "./partial"
-import { CopyArea, CopyUrl } from "./style"
 
 export const NewPlaylist: NextPage = ({}) => {
     const router = useRouter()

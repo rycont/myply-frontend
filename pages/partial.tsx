@@ -1,7 +1,7 @@
-import { Playlist } from "myply-common"
-import { GDesc, IDesc, IRegular, LoadSVG, Redirector } from "components"
 import React from "react"
+import { Playlist } from "myply-common"
 import { Hexile, Vexile } from "@haechi/flexile"
+import { GDesc, IDesc, IRegular, LoadSVG, Redirector } from "components"
 
 export const PlaylistItem: React.FC<Playlist> = (props) => {
     return (

@@ -1,10 +1,10 @@
 import { Vexile } from "@haechi/flexile"
-import { ModalPlaceholder } from "components"
 import { AppProps } from "next/app"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { RecoilRoot } from "recoil"
+import { ModalPlaceholder } from "components"
 import { globalCss, styled } from "stitches.config"
 import "style/ongothic/index.css"
 
@@ -42,6 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                         <a>
                             <LogoWapper>
                                 <Image
+                                    priority
                                     src="/logo.svg"
                                     layout="fill"
                                     alt="서비스 로고"

@@ -1,8 +1,7 @@
-import { initDatabase, playlistDatabase, songDatabase } from "database"
-import { apiHandler } from "error"
 import { Playlist, Song } from "myply-common"
-import { NextApiHandler } from "next"
+import { initDatabase, playlistDatabase, songDatabase } from "database"
 import { fetchPlaylist } from "process/fetchPlaylist"
+import { apiHandler } from "error"
 import { Doc } from "types"
 
 async function mergeWithDatabase(song: Song): Promise<Doc<Song>> {

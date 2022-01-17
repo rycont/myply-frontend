@@ -1,5 +1,4 @@
 import axios from "axios"
-import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
 export const connect = async <In, Out>(uri: string, data: In): Promise<Out> => {

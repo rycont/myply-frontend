@@ -1,6 +1,6 @@
-import { initDatabase, playlistDatabase } from "database"
-import { Song } from "myply-common"
 import { NextApiHandler } from "next"
+import { Song } from "myply-common"
+import { initDatabase, playlistDatabase } from "database"
 
 export default <NextApiHandler>(async (_, res) => {
     await initDatabase()

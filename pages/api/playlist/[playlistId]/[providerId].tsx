@@ -1,8 +1,8 @@
-import { providers } from "constant"
-import { initDatabase, playlistDatabase, songDatabase } from "database"
-import { apiHandler, CommonError } from "error"
 import { Playlist, Song } from "myply-common"
 import { NextApiHandler } from "next"
+import { initDatabase, playlistDatabase, songDatabase } from "database"
+import { apiHandler, CommonError } from "error"
+import { providers } from "constant"
 
 const createUri: NextApiHandler = apiHandler(async (req, res) => {
     await initDatabase()
