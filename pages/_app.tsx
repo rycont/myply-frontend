@@ -1,13 +1,13 @@
-import { Vexile } from "@haechi/flexile"
 import { AppProps } from "next/app"
-import Head from "next/head"
-import Image from "next/image"
-import Link from "next/link"
 import { RecoilRoot } from "recoil"
-import { ModalPlaceholder } from "components"
-import { globalCss, styled } from "stitches.config"
-import "style/ongothic/index.css"
+import Image from "next/image"
+import Head from "next/head"
+import Link from "next/link"
+
 import { AppWrapper, LogoWapper } from "./style"
+import { ModalPlaceholder } from "components"
+import { globalCss } from "stitches.config"
+import "style/ongothic.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
     globalCss({

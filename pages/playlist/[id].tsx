@@ -129,15 +129,13 @@ export const NewPlaylist: NextPage = ({}) => {
                 ))}
             </Vexile>
             <Fab onClick={() => setSelectorOpen(true)}>
-                <Hexile gap={1} y="center">
-                    <IRegular>내 음악 앱으로 열기</IRegular>
-                    <LoadSVG
-                        alt="재생 아이콘"
-                        src="/icons/speaker.svg"
-                        width={5}
-                        height={5}
-                    />
-                </Hexile>
+                <IRegular>내 음악 앱으로 열기</IRegular>
+                <LoadSVG
+                    alt="재생 아이콘"
+                    src="/icons/speaker.svg"
+                    width={5}
+                    height={5}
+                />
             </Fab>
             {isSelectorOpen && (
                 <ProviderSelector

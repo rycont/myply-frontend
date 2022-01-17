@@ -37,7 +37,7 @@ const typoGenerator = (
         },
     })
 
-export const Header = typoGenerator(5, 800)
+export const Header = typoGenerator(5, 700)
 export const XDesc = typoGenerator(4, 400, undefined, 0.4)
 export const SectionHeader = typoGenerator(4.5, 700)
 export const Regular = typoGenerator(4, 400)

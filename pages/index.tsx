@@ -1,7 +1,7 @@
 import { List } from "react-content-loader"
 import { Playlist } from "myply-common"
 import Link from "next/link"
-import { Fab, Header, LoadSVG, PlainLink } from "components"
+import { Fab, Header, IRegular, LoadSVG, PlainLink } from "components"
 import { PlaylistItem } from "./partial"
 import { Vexile } from "@haechi/flexile"
 import { useConnect } from "connector"
@@ -30,7 +30,7 @@ export default function Home() {
             <Link href="/new">
                 <a>
                     <Fab>
-                        내 플리 공유하기
+                        <IRegular>내 플리 공유하기</IRegular>
                         <LoadSVG
                             alt="플레이리스트 업로드 아이콘"
                             src="/icons/playlist.svg"
