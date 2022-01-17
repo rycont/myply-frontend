@@ -13,6 +13,7 @@ const typoGenerator = (
         margin: 0,
         lineHeight: lineHeight + "rem",
         opacity,
+        "word-break": "keep-all",
         variants: {
             accent: {
                 true: {
