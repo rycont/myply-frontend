@@ -82,7 +82,8 @@ export const NewPlaylist: NextPage = ({}) => {
     const createUri = async (seleted: Adaptor) => {
         setModal({
             title: "잠시만 기다려주세요 ..",
-            content: "플레이리스트 주소를 만들고 있어요",
+            content:
+                "플리를 불러오고 있어요. 최대 1분정도 소요될 수 있고, 플리가 열리기 전까지 조금만 기다려주세요😉! 빈 창만 열리고 플리 재생이 시작되지 않으면 이전 화면으로 돌아가서 서비스를 다시 선택해주세요.",
             dismissable: false,
         })
         try {
