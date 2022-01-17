@@ -24,4 +24,13 @@ export const ProviderItemWrapper = styled(Vexile, {
     borderRadius: "3rem",
 })
 
-export const FixedSizeItem = styled("div", { height: "10rem", width: "10rem" })
+export const FixedSizeItem = styled("div", {
+    maxHeight: "8rem",
+    width: "10rem",
+    "&>svg": {
+        height: "fit-content",
+        width: "fit-content",
+        maxHeight: "100%",
+        maxWidth: "100%",
+    },
+})
