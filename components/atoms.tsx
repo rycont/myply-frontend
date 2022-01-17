@@ -23,6 +23,13 @@ export const Button = styled(Hexile, {
     borderRadius: "6rem",
     gap: "1rem",
     alignItems: "center",
+    variants: {
+        disabled: {
+            true: {
+                background: "#C7C7C7",
+            },
+        },
+    },
 })
 
 export const PlainLink = styled("a", {

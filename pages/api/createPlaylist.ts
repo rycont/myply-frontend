@@ -1,4 +1,5 @@
 import { initDatabase, playlistDatabase, songDatabase } from "database"
+import { apiHandler } from "error"
 import { Playlist, Song } from "myply-common"
 import { NextApiHandler } from "next"
 import { fetchPlaylist } from "process/fetchPlaylist"
@@ -66,10 +67,9 @@ async function mergeWithDatabase(song: Song): Promise<Doc<Song>> {
     return { ...song, _id: createdId }
 }
 
-export default <NextApiHandler>(async (req, res) => {
+export default apiHandler(async (req, res) => {
     await initDatabase()
 
-    console.log(req.body)
     const fetched = (await fetchPlaylist(
         req.body.playlistURI as string
     )) as Playlist

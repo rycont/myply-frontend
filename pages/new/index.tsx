@@ -1,7 +1,9 @@
 import { Vexile } from "@haechi/flexile"
+import axios, { AxiosError } from "axios"
 import { modalContentAtom } from "coil"
 import { Button, Header, Input, XDesc } from "components"
 import { connect } from "connector"
+import { ERROR_CODES, providers } from "constant"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
@@ -19,24 +21,38 @@ export const NewPlaylist: React.FC = () => {
             dismissable: false,
         })
 
-        const { createdId } = await connect<unknown, { createdId: string }>(
-            "createPlaylist",
-            {
-                playlistURI,
-            }
-        )
-
-        setModal(null)
-
-        router.push(`/playlist/${createdId}?first`)
+        try {
+            const { createdId } = await connect<unknown, { createdId: string }>(
+                "createPlaylist",
+                {
+                    playlistURI,
+                }
+            )
+            setModal(null)
+            router.push(`/playlist/${createdId}?first`)
+        } catch (e) {
+            if (axios.isAxiosError(e))
+                setModal({
+                    title: e.response?.data.message,
+                    content: `${
+                        providers.map((e) => e.display.name).join(", ").을를
+                    } 지원해요.`,
+                    dismissable: true,
+                    button: {
+                        action: () => setModal(null),
+                        label: "닫기",
+                    },
+                })
+        }
     }
 
     return (
         <Vexile filly gap={6} y="center" x="center">
             <Vexile gap={1.5} x="center">
                 <Header>내 플리 공유</Header>
-                <XDesc>
-                    플리 URL을 입력해주세요. 멜론, 스포티파이를 지원해요.
+                <XDesc center>
+                    플리 URL을 입력해주세요. 멜론, 스포티파이, 지니, 플로를
+                    지원해요.
                 </XDesc>
             </Vexile>
             <Input
@@ -44,7 +60,12 @@ export const NewPlaylist: React.FC = () => {
                 icon="/icons/link.svg"
                 onChange={setPlaylistURI}
             />
-            <Button onClick={processPlaylist}>다음</Button>
+            <Button
+                disabled={!playlistURI}
+                onClick={playlistURI ? processPlaylist : undefined}
+            >
+                다음
+            </Button>
         </Vexile>
     )
 }

@@ -3680,6 +3680,11 @@ jest-worker@27.0.0-next.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
+josa-complete@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/josa-complete/-/josa-complete-1.4.1.tgz#ae56c6b5da4217beff1378d0247ce33bee07369c"
+  integrity sha512-tLIzKA6YyvV6/pbr3pPw8vuoCs/frXMfOdzcT/hfKEmbaxsNLpEnUfAmX/KcRrCt6wamSHvM3LXf+SRBk5zV1g==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"

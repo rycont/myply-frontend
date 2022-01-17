@@ -13,7 +13,6 @@ export const connect = async <In, Out>(uri: string, data: In): Promise<Out> => {
 
 export const useConnect = <In, Out>(uri: string, data: In) => {
     const [value, setValue] = useState<Out>()
-    const router = useRouter()
 
     useEffect(() => {
         connect<In, Out>(uri, data)

@@ -84,18 +84,32 @@ export const NewPlaylist: NextPage = ({}) => {
             content: "플레이리스트 주소를 만들고 있어요",
             dismissable: false,
         })
-        window
-            .open(
-                (
-                    await axios(
-                        `/api/playlist/${playlist._id}/${seleted.determinator[0]}`
-                    )
-                ).data.uri,
-                "_blank"
-            )
-            ?.focus()
-        setModal(null)
-        setSelectorOpen(false)
+        try {
+            window
+                .open(
+                    (
+                        await axios(
+                            `/api/playlist/${playlist._id}/${seleted.determinator[0]}`
+                        )
+                    ).data.uri,
+                    "_blank"
+                )
+                ?.focus()
+            setModal(null)
+            setSelectorOpen(false)
+        } catch (e) {
+            console.log(axios.isAxiosError(e))
+            if (axios.isAxiosError(e)) {
+                setModal({
+                    title: "오류가 발생했어요..",
+                    content: e.response?.data.message,
+                    button: {
+                        label: "닫기",
+                        action: () => setModal(null),
+                    },
+                })
+            }
+        }
     }
 
     return (
