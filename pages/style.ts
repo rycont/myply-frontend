@@ -12,6 +12,7 @@ export const AppWrapper = styled(Vexile, {
     maxWidth: "620px",
     position: "relative",
     margin: "0 auto",
+    minHeight: "100vh",
 })
 
 export default Redirector

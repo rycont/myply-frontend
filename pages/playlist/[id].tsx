@@ -40,7 +40,7 @@ export const NewPlaylist: NextPage = ({}) => {
 
     useEffect(() => {
         console.log(router)
-        if (router.query.first === "")
+        if (router.query.first === "") {
             setModal({
                 title: "성공적으로 업로드했어요! 👍",
                 content: (
@@ -69,6 +69,8 @@ export const NewPlaylist: NextPage = ({}) => {
                 },
                 dismissable: true,
             })
+            router.push(router.asPath.split("?")[0])
+        }
     }, [router, setModal])
 
     useEffect(() => {

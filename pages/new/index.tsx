@@ -47,7 +47,7 @@ export const NewPlaylist: React.FC = () => {
     }
 
     return (
-        <Vexile filly gap={6} y="center" x="center">
+        <Vexile filly css={{ flex: 1 }} gap={6} y="center" x="center">
             <Vexile gap={1.5} x="center">
                 <Header>내 플리 공유</Header>
                 <XDesc center>
