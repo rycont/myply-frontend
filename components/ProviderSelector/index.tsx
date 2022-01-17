@@ -19,6 +19,10 @@ export const ProviderSelector: React.FC<{
                 <GDesc>
                     멜론, 플로, 지니는 모바일 앱이 설치되어야 사용할 수 있어요
                 </GDesc>
+                <GDesc>
+                    플레이리스트 생성에 실패할 수 있어요.. 오류가 발생했을 때는
+                    새로고침 후 다시 시도해주세요.
+                </GDesc>
                 {[...Array(Math.ceil(providers.length / 2))].map((_, i) => (
                     <Hexile gap={3} key={i}>
                         {[...Array(2)].map((_, j) => (

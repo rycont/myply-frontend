@@ -48,11 +48,16 @@ export const NewPlaylist: React.FC = () => {
 
     return (
         <Vexile filly css={{ flex: 1 }} gap={6} y="center" x="center">
-            <Vexile gap={1.5} x="center">
+            <Vexile gap={2} x="center">
                 <Header>내 플리 공유</Header>
                 <XDesc center>
-                    플리 URL을 입력해주세요. 멜론, 스포티파이, 지니, 플로를
+                    플리 URL을 입력해주세요.{" "}
+                    {providers.map((e) => e.display.name).join(", ").을를}{" "}
                     지원해요.
+                </XDesc>
+                <XDesc center>
+                    최대 25개의 곡을 공유할 수 있어요. 플리에 담긴 노래가
+                    25개보다 이상일 경우엔 앞에서 25개만 공유돼요.
                 </XDesc>
             </Vexile>
             <Input
