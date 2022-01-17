@@ -24,7 +24,7 @@ export const PlaylistItem: React.FC<Playlist> = (props) => {
                     .map((e) => e.name)
                     .join(", ")}
                 {props.tracks.length > 5
-                    ? `외 ${props.tracks.length - 1}곡`
+                    ? ` 외 ${props.tracks.length - 5}곡`
                     : null}
             </GDesc>
         </Vexile>

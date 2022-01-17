@@ -1,7 +1,7 @@
 @font-face {
     font-family: "KoddiUD OnGothic";
     src: local("KoddiUD OnGothic Regular") url(KoddiUDOnGothic-Regular.woff2)
-        format("woff2");
+        format("woff2") url(KoddiUDOnGothic-Regular.woff) format("woff");
     font-weight: 400;
     font-style: normal;
 }
@@ -9,7 +9,7 @@
 @font-face {
     font-family: "KoddiUD OnGothic";
     src: local("KoddiUD OnGothic Bold") url(KoddiUDOnGothic-Bold.woff2)
-        format("woff2");
+        format("woff2") url(KoddiUDOnGothic-Bold.woff) format("woff");
     font-weight: 700;
     font-style: normal;
 }
@@ -17,7 +17,8 @@
 @font-face {
     font-family: "KoddiUD OnGothic";
     src: local("KoddiUD OnGothic ExtraBold")
-        url(KoddiUDOnGothic-ExtraBold.woff2) format("woff2");
+        url(KoddiUDOnGothic-ExtraBold.woff2) format("woff2")
+        url(KoddiUDOnGothic-ExtraBold.woff) format("woff");
     font-weight: 800;
     font-style: normal;
 }

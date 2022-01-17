@@ -7,12 +7,7 @@ import { RecoilRoot } from "recoil"
 import { ModalPlaceholder } from "components"
 import { globalCss, styled } from "stitches.config"
 import "style/ongothic/index.css"
-
-const LogoWapper = styled("div", {
-    width: "30rem",
-    minHeight: "6rem",
-    position: "relative",
-})
+import { AppWrapper, LogoWapper } from "./style"
 
 function MyApp({ Component, pageProps }: AppProps) {
     globalCss({
@@ -37,7 +32,13 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Head>
             <RecoilRoot>
                 <ModalPlaceholder />
-                <Vexile padding={6} gap={6} filly>
+                <AppWrapper
+                    padding={6}
+                    gap={6}
+                    css={{
+                        paddingBottom: "24rem",
+                    }}
+                >
                     <Link href="/">
                         <a>
                             <LogoWapper>
@@ -51,7 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                         </a>
                     </Link>
                     <Component {...pageProps} />
-                </Vexile>
+                </AppWrapper>
             </RecoilRoot>
         </>
     )
