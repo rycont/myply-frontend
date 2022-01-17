@@ -27,6 +27,8 @@ export const apiHandler: (h: NextApiHandler) => NextApiHandler =
                     message: e.message,
                 })
 
+            console.log(e)
+
             res.status(500).json({ message: "알 수 없는 오류가 발생했어요.." })
         }
     }

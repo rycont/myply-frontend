@@ -28,65 +28,60 @@ const createUri: NextApiHandler = apiHandler(async (req, res) => {
             uri: preGenerated,
         })
 
-    try {
-        const tracks = (
-            await Promise.all(
-                playlistWithParsed.tracks.map(async (_song) => {
-                    const song = _song as unknown as Omit<
-                        Song,
-                        "channelIds"
-                    > & {
-                        channelIds: string
-                        _id: string
-                    }
-                    const prefetchedIds = JSON.parse(song.channelIds)
-                    if (prefetchedIds[req.query.providerId as string])
-                        return {
-                            ...song,
-                            channelIds: prefetchedIds,
-                        }
-
-                    const id = await provider.findSongId({
-                        ...song,
-                        channelIds: prefetchedIds,
-                    })
-
-                    if (!id) return null
-
-                    await songDatabase.update(song._id, {
-                        channelIds: JSON.stringify({
-                            ...prefetchedIds,
-                            [req.query.providerId as string]: id,
-                        }),
-                    })
-
+    const tracks = (
+        await Promise.all(
+            playlistWithParsed.tracks.map(async (_song) => {
+                const song = _song as unknown as Omit<Song, "channelIds"> & {
+                    channelIds: string
+                    _id: string
+                }
+                const prefetchedIds = JSON.parse(song.channelIds || "{}")
+                if (prefetchedIds[req.query.providerId as string])
                     return {
                         ...song,
-                        channelIds: {
-                            ...prefetchedIds,
-                            [req.query.providerId as string]: id,
-                        },
+                        channelIds: prefetchedIds,
                     }
+
+                const id = await provider.findSongId({
+                    ...song,
+                    channelIds: prefetchedIds,
                 })
-            )
-        ).filter(Boolean) as Song[]
 
-        const uri = await provider.generateURL({
-            ...playlistWithParsed,
-            tracks,
-        })
+                if (!id) return null
 
-        playlistDatabase.update(req.query.playlistId as string, {
-            preGenerated: JSON.stringify({
-                ...playlistWithParsed.preGenerated,
-                [req.query.providerId as string]: uri,
-            }),
-        })
+                await songDatabase.update(song._id, {
+                    channelIds: JSON.stringify({
+                        ...prefetchedIds,
+                        [req.query.providerId as string]: id,
+                    }),
+                })
 
-        res.json({
-            uri,
-        })
-    } catch (e) {}
+                return {
+                    ...song,
+                    channelIds: {
+                        ...prefetchedIds,
+                        [req.query.providerId as string]: id,
+                    },
+                }
+            })
+        )
+    ).filter(Boolean) as Song[]
+
+    const uri = await provider.generateURL({
+        ...playlistWithParsed,
+        tracks,
+    })
+
+    playlistDatabase.update(req.query.playlistId as string, {
+        preGenerated: JSON.stringify({
+            ...playlistWithParsed.preGenerated,
+            [req.query.providerId as string]: uri,
+        }),
+    })
+
+    res.json({
+        uri,
+    })
 })
 
 export default createUri
