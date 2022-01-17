@@ -1,5 +1,6 @@
 import { Vexile } from "@haechi/flexile"
 import { styled } from "stitches.config"
+import Redirector from "./partial"
 
 export const LogoWapper = styled("div", {
     maxWidth: "30rem",
@@ -12,3 +13,5 @@ export const AppWrapper = styled(Vexile, {
     position: "relative",
     margin: "0 auto",
 })
+
+export default Redirector
