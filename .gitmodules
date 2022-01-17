@@ -8,3 +8,6 @@
 [submodule "packages/myply-genie-adapter"]
 	path = packages/myply-genie-adapter
 	url = https://github.com/rycont/myply-genie-adapter/
+[submodule "packages/myply-flo-adapter"]
+	path = packages/myply-flo-adapter
+	url = https://github.com/rycont/myply-flo-adapter/
