@@ -104,8 +104,16 @@ export const NewPlaylist: NextPage = ({}) => {
                 )
                 ?.focus()
             setModal(null)
+            logEvent(getAnalytics(), "generation_finished", {
+                provider: seleted.determinator[0],
+                id: playlist._id,
+            })
             setSelectorOpen(false)
         } catch (e) {
+            logEvent(getAnalytics(), "generation_failed", {
+                provider: seleted.determinator[0],
+                id: playlist._id,
+            })
             console.log(axios.isAxiosError(e))
             if (axios.isAxiosError(e)) {
                 setModal({
