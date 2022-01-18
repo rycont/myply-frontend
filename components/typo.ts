@@ -35,6 +35,11 @@ const typoGenerator = (
                     textAlign: "center",
                 },
             },
+            clickable: {
+                true: {
+                    cursor: "pointer",
+                },
+            },
         },
     })
 

@@ -40,7 +40,11 @@ export const ModalPlaceholder = () => {
                 )}
                 {content.button && (
                     <Hexile fillx x="right">
-                        <IRegular onClick={content.button.action} accent>
+                        <IRegular
+                            onClick={content.button.action}
+                            accent
+                            clickable
+                        >
                             {content.button.label}
                         </IRegular>
                     </Hexile>

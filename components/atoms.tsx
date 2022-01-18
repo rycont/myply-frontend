@@ -14,6 +14,7 @@ export const Fab = styled(Hexile, {
     gap: "1rem",
     alignItems: "center",
     width: "fit-content",
+    cursor: "pointer",
 })
 
 export const Button = styled(Hexile, {
@@ -23,10 +24,12 @@ export const Button = styled(Hexile, {
     borderRadius: "6rem",
     gap: "1rem",
     alignItems: "center",
+    cursor: "pointer",
     variants: {
         disabled: {
             true: {
                 background: "#C7C7C7",
+                cursor: "not-allowed",
             },
         },
     },
