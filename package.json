@@ -1,33 +1,33 @@
 {
-  "name": "myply-frontend",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@notionhq/client": "^0.4.11",
-    "@stitches/react": "^1.2.6",
-    "axios": "^0.24.0",
-    "dotenv": "^10.0.0",
-    "josa-complete": "^1.4.1",
-    "myply-common": "https://github.com/rycont/myply-common",
-    "next": "12.0.7",
-    "react": "17.0.2",
-    "react-content-loader": "^6.1.0",
-    "react-dom": "17.0.2",
-    "recoil": "^0.5.2"
-  },
-  "devDependencies": {
-    "@types/node": "^17.0.5",
-    "@types/react": "^17.0.38",
-    "eslint": "8.5.0",
-    "eslint-config-next": "12.0.7",
-    "lerna": "^4.0.0",
-    "ts-loader": "^9.2.6",
-    "typescript": "^4.5.4"
-  },
-  "packageManager": "yarn@3.1.1"
+    "name": "myply-frontend",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "NODE_OPTIONS='--tls-min-v1.0' next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@notionhq/client": "^0.4.11",
+        "@stitches/react": "^1.2.6",
+        "axios": "^0.24.0",
+        "dotenv": "^10.0.0",
+        "josa-complete": "^1.4.1",
+        "myply-common": "https://github.com/rycont/myply-common",
+        "next": "12.0.7",
+        "react": "17.0.2",
+        "react-content-loader": "^6.1.0",
+        "react-dom": "17.0.2",
+        "recoil": "^0.5.2"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.5",
+        "@types/react": "^17.0.38",
+        "eslint": "8.5.0",
+        "eslint-config-next": "12.0.7",
+        "lerna": "^4.0.0",
+        "ts-loader": "^9.2.6",
+        "typescript": "^4.5.4"
+    },
+    "packageManager": "yarn@3.1.1"
 }
