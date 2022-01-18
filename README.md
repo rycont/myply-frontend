@@ -16,6 +16,7 @@
   - [>> myply-melon-adapter](https://github.com/rycont/myply-melon-adapter/)
   - [>> myply-spotify-adapter](https://github.com/rycont/myply-spotify-adapter/)
   - [>> myply-genie-adapter](https://github.com/rycont/myply-genie-adapter/)
+  - [myply-bugs-adapter](https://github.com/rycont/myply-bugs-adapter)
 - ...etc
 
 ### Related Repository
@@ -25,3 +26,4 @@
   - [myply-melon-adapter](https://github.com/rycont/myply-melon-adapter/)
   - [myply-spotify-adapter](https://github.com/rycont/myply-spotify-adapter/)
   - [myply-genie-adapter](https://github.com/rycont/myply-genie-adapter/)
+  - [myply-bugs-adapter](https://github.com/rycont/myply-bugs-adapter)
