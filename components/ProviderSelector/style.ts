@@ -18,6 +18,8 @@ export const PanelWrapper = styled(Vexile, {
     borderTopLeftRadius: "6rem",
     borderTopRightRadius: "6rem",
     animation: `${appear} 200ms`,
+    maxWidth: "480px",
+    margin: "0 auto",
 })
 
 export const ProviderItemWrapper = styled(Vexile, {

@@ -73,6 +73,7 @@ const adf: CreatePageParameters["properties"] = {
 type TypeBase = Record<string, string | number | boolean | Relation>
 
 const object2NotionProperty = (content: TypeBase) => {
+    console.log(content)
     return Object.fromEntries(
         Object.entries(content).map(([key, value]) => {
             const type = typeof value

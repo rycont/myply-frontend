@@ -11,3 +11,6 @@
 [submodule "packages/myply-flo-adapter"]
 	path = packages/myply-flo-adapter
 	url = https://github.com/rycont/myply-flo-adapter/
+[submodule "packages/myply-bugs-adapter"]
+	path = packages/myply-bugs-adapter
+	url = https://github.com/rycont/myply-bugs-adapter

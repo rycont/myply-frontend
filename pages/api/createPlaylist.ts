@@ -73,6 +73,8 @@ export default apiHandler(async (req, res) => {
         req.body.playlistURI as string
     )) as Playlist
 
+    console.log(fetched)
+
     const merged = await Promise.all(
         fetched.tracks.slice(0, 25).map(mergeWithDatabase)
     )

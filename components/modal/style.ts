@@ -13,4 +13,5 @@ export const ModalWrapper = styled(Vexile, {
     accentBorder: true,
     backgroundColor: "white",
     borderRadius: "3rem",
+    maxWidth: "480px",
 })
