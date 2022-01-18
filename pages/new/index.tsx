@@ -18,7 +18,8 @@ export const NewPlaylist: React.FC = () => {
     const processPlaylist = async () => {
         setModal({
             title: "잠시만 기다려주세요 ..",
-            content: "플레이리스트에 어떤 노래가 담겨있는지 읽고 있어요",
+            content:
+                "플레이리스트에 어떤 노래가 담겨있는지 읽고 있어요. 최대 1분이 소요될 수 있으니, 페이지를 이동하지 말고 조금만 기다려주세요😊",
             dismissable: false,
         })
 
