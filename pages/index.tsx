@@ -6,12 +6,13 @@ import { PlaylistItem } from "./partial"
 import { Vexile } from "@haechi/flexile"
 import { useConnect } from "connector"
 import { Doc, PlaylistWithBriefContent } from "types"
+import { Relation } from "database"
 
 export default function Home() {
-    const recents = useConnect<undefined, Doc<PlaylistWithBriefContent>[]>(
-        "recent",
-        undefined
-    )
+    const recents = useConnect<
+        undefined,
+        (Omit<Doc<PlaylistWithBriefContent>, "tracks"> & { tracks: Relation })[]
+    >("recent", undefined)
     return (
         <Vexile gap={3}>
             <Header>방금 올라온 플리</Header>
