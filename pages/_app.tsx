@@ -8,6 +8,8 @@ import { AppWrapper, LogoWapper } from "./style"
 import { ModalPlaceholder } from "components"
 import { globalCss } from "stitches.config"
 import "style/ongothic.css"
+import { useEffect } from "react"
+import { setupFirebase } from "analytics"
 
 function MyApp({ Component, pageProps }: AppProps) {
     globalCss({
@@ -23,6 +25,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             height: "100vh",
         },
     })()
+
+    useEffect(() => {
+        setupFirebase()
+    }, [])
 
     return (
         <>

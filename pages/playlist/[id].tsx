@@ -20,6 +20,8 @@ import {
     XDesc,
 } from "components"
 import { Doc } from "types"
+import { getAnalytics, logEvent } from "firebase/analytics"
+import { analytics } from "analytics"
 
 export const NewPlaylist: NextPage = ({}) => {
     const router = useRouter()
@@ -85,6 +87,10 @@ export const NewPlaylist: NextPage = ({}) => {
             content:
                 "플리를 불러오고 있어요. 최대 1분정도 소요될 수 있고, 플리가 열리기 전까지 조금만 기다려주세요😉! 빈 창만 열리고 플리 재생이 시작되지 않으면 이전 화면으로 돌아가서 서비스를 다시 선택해주세요.",
             dismissable: false,
+        })
+        logEvent(getAnalytics(), "start_playlist", {
+            provider: seleted.determinator[0],
+            id: playlist._id,
         })
         try {
             window

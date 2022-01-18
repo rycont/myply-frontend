@@ -2,6 +2,7 @@ import { Vexile } from "@haechi/flexile"
 import { useRouter } from "next/router"
 import { useRecoilState } from "recoil"
 import { useState } from "react"
+import Head from "next/head"
 import axios from "axios"
 import "josa-complete"
 import { Button, Header, Input, XDesc } from "components"
@@ -47,31 +48,37 @@ export const NewPlaylist: React.FC = () => {
     }
 
     return (
-        <Vexile filly css={{ flex: 1 }} gap={6} y="center" x="center">
-            <Vexile gap={2} x="center">
-                <Header>내 플리 공유</Header>
-                <XDesc center>
-                    플리 URL을 입력해주세요.{" "}
-                    {providers.map((e) => e.display.name).join(", ").을를}{" "}
-                    지원해요.
-                </XDesc>
-                <XDesc center>
-                    최대 25개의 곡을 공유할 수 있어요. 플리에 담긴 노래가
-                    25개보다 이상일 경우엔 앞에서 25개만 공유돼요.
-                </XDesc>
+        <>
+            <Head>
+                <link rel="icon" href="/favicon.svg" />
+                <title>내 플리 공유 : 마이플리</title>
+            </Head>
+            <Vexile filly css={{ flex: 1 }} gap={6} y="center" x="center">
+                <Vexile gap={2} x="center">
+                    <Header>내 플리 공유</Header>
+                    <XDesc center>
+                        플리 URL을 입력해주세요.{" "}
+                        {providers.map((e) => e.display.name).join(", ").을를}{" "}
+                        지원해요.
+                    </XDesc>
+                    <XDesc center>
+                        최대 25개의 곡을 공유할 수 있어요. 플리에 담긴 노래가
+                        25개보다 이상일 경우엔 앞에서 25개만 공유돼요.
+                    </XDesc>
+                </Vexile>
+                <Input
+                    placeholder="URL 입력"
+                    icon="/icons/link.svg"
+                    onChange={setPlaylistURI}
+                />
+                <Button
+                    disabled={!playlistURI}
+                    onClick={playlistURI ? processPlaylist : undefined}
+                >
+                    다음
+                </Button>
             </Vexile>
-            <Input
-                placeholder="URL 입력"
-                icon="/icons/link.svg"
-                onChange={setPlaylistURI}
-            />
-            <Button
-                disabled={!playlistURI}
-                onClick={playlistURI ? processPlaylist : undefined}
-            >
-                다음
-            </Button>
-        </Vexile>
+        </>
     )
 }
 
