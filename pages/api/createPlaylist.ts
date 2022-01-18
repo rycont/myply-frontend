@@ -97,7 +97,7 @@ export default apiHandler(async (req, res) => {
             .join(", ")}
         ${
             fetched.tracks.length > 5
-                ? ` 외 ${fetched.tracks.length - 5}곡`
+                ? ` 외 ${Math.min(fetched.tracks.length, 25) - 5}곡`
                 : null
         }`,
     })
