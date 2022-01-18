@@ -1,8 +1,9 @@
 import { Playlist, Song } from "myply-common"
 import { connectDatabase, Database, Relation } from "database"
+import { PlaylistWithBriefContent } from "types"
 
 export let playlistDatabase: Database<
-    Omit<Omit<Playlist, "tracks">, "preGenerated"> & {
+    Omit<Omit<PlaylistWithBriefContent, "tracks">, "preGenerated"> & {
         tracks: Relation
         preGenerated: string
     }

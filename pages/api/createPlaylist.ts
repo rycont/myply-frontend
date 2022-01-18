@@ -89,6 +89,15 @@ export default apiHandler(async (req, res) => {
                 .map((e) => e._id),
         },
         preGenerated: JSON.stringify(fetched.preGenerated),
+        briefContent: `${fetched.tracks
+            .slice(0, 5)
+            .map((e) => e.name)
+            .join(", ")}
+        ${
+            fetched.tracks.length > 5
+                ? ` 외 ${fetched.tracks.length - 5}곡`
+                : null
+        }`,
     })
 
     res.json({ createdId })

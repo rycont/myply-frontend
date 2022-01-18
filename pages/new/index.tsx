@@ -64,7 +64,7 @@ export const NewPlaylist: React.FC = () => {
                     </XDesc>
                     <XDesc center>
                         최대 25개의 곡을 공유할 수 있어요. 플리에 담긴 노래가
-                        25개보다 이상일 경우엔 앞에서 25개만 공유돼요.
+                        25개보다 많을 때는 앞에서 25개만 공유돼요.
                     </XDesc>
                 </Vexile>
                 <Input

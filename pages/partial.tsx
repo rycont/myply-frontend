@@ -2,8 +2,12 @@ import React from "react"
 import { Playlist } from "myply-common"
 import { Hexile, Vexile } from "@haechi/flexile"
 import { GDesc, IDesc, IRegular, LoadSVG, Redirector } from "components"
+import { PlaylistWithBriefContent } from "types"
+import { Relation } from "database"
 
-export const PlaylistItem: React.FC<Playlist> = (props) => {
+export const PlaylistItem: React.FC<
+    Omit<PlaylistWithBriefContent, "tracks"> & { tracks: Relation }
+> = (props) => {
     return (
         <Vexile gap={1.5}>
             <Vexile>
@@ -15,18 +19,10 @@ export const PlaylistItem: React.FC<Playlist> = (props) => {
                         width={2}
                         src="/icons/song.svg"
                     />
-                    <IDesc>{props.tracks.length}곡</IDesc>
+                    <IDesc>{props.tracks.target.length}곡</IDesc>
                 </Hexile>
             </Vexile>
-            <GDesc>
-                {props.tracks
-                    .slice(0, 5)
-                    .map((e) => e.name)
-                    .join(", ")}
-                {props.tracks.length > 5
-                    ? ` 외 ${props.tracks.length - 5}곡`
-                    : null}
-            </GDesc>
+            <GDesc>{props.briefContent}</GDesc>
         </Vexile>
     )
 }

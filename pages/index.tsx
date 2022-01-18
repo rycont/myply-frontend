@@ -5,10 +5,13 @@ import { Fab, Header, IRegular, LoadSVG, PlainLink } from "components"
 import { PlaylistItem } from "./partial"
 import { Vexile } from "@haechi/flexile"
 import { useConnect } from "connector"
-import { Doc } from "types"
+import { Doc, PlaylistWithBriefContent } from "types"
 
 export default function Home() {
-    const recents = useConnect<undefined, Doc<Playlist>[]>("recent", undefined)
+    const recents = useConnect<undefined, Doc<PlaylistWithBriefContent>[]>(
+        "recent",
+        undefined
+    )
     return (
         <Vexile gap={3}>
             <Header>방금 올라온 플리</Header>
