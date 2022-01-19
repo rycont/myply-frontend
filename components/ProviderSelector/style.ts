@@ -24,6 +24,7 @@ export const PanelWrapper = styled(Vexile, {
 
 export const ProviderItemWrapper = styled(Vexile, {
     borderRadius: "3rem",
+    cursor: "pointer",
 })
 
 export const FixedSizeItem = styled("div", {
