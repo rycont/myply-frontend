@@ -31,7 +31,7 @@ export const FixedSizeItem = styled("div", {
     maxHeight: "8rem",
     width: "10rem",
     "&>svg": {
-        height: "fit-content",
+        height: "32px",
         width: "fit-content",
         maxHeight: "100%",
         maxWidth: "100%",
