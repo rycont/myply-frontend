@@ -4781,7 +4781,7 @@ mute-stream@0.0.8, mute-stream@~0.0.4:
 
 "myply-common@https://github.com/rycont/myply-common/":
   version "0.0.0"
-  resolved "https://github.com/rycont/myply-common/#53871873db988a0a19fae8d1108c8b43c2ce9a1b"
+  resolved "https://github.com/rycont/myply-common/#4c3e614cac9acfcf75699932e28597fa2a1ad2bd"
 
 nanoid@^3.1.23:
   version "3.1.30"

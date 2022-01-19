@@ -23,7 +23,7 @@ const createUri: NextApiHandler = apiHandler(async (req, res) => {
     const preGenerated =
         playlistWithParsed.preGenerated[req.query.providerId as string]
 
-    if (preGenerated)
+    if (preGenerated && !provider.config?.isPlaylistPlpatformSpecific)
         return res.json({
             uri: preGenerated,
         })
