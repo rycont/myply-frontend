@@ -67,10 +67,14 @@ const createUri: NextApiHandler = apiHandler(async (req, res) => {
         )
     ).filter(Boolean) as Song[]
 
-    const uri = await provider.generateURL({
-        ...playlistWithParsed,
-        tracks,
-    })
+    const uri = await provider.generateURL(
+        {
+            ...playlistWithParsed,
+            tracks,
+        },
+        undefined,
+        req.headers["user-agent"]
+    )
 
     playlistDatabase.update(req.query.playlistId as string, {
         preGenerated: JSON.stringify({

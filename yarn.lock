@@ -4779,9 +4779,9 @@ mute-stream@0.0.8, mute-stream@~0.0.4:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
-"myply-common@https://github.com/rycont/myply-common":
+"myply-common@https://github.com/rycont/myply-common/":
   version "0.0.0"
-  resolved "https://github.com/rycont/myply-common#953e44169cbe4af2622b2700eb32617858855a40"
+  resolved "https://github.com/rycont/myply-common/#53871873db988a0a19fae8d1108c8b43c2ce9a1b"
 
 nanoid@^3.1.23:
   version "3.1.30"
