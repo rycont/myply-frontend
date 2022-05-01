@@ -6,4 +6,4 @@ RUN git clone --recursive https://github.com/rycont/myply-frontend .
 RUN yarn
 RUN yarn build
 
-CMD ["npm", "run", "start"]
+CMD ["sh", "-c", "npm run start"]
